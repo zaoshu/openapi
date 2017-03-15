@@ -20,7 +20,7 @@ To get authorized, compose the query path as `/v1/u_${YOUR_ACCESS_KEY}/`, for ex
 
     https://openapi.zaoshu.io/v1/u_9083adfb6d50484b8c2ee3c504012def
 
-You can retrieve your access key in the `Developer Features` card at [`Settings`](http://dashboard.zaoshu.io/?settings)
+You can retrieve your access key in the `Developer Features` card at [`Settings`](https://dashboard.zaoshu.io/?settings)
 
 ### The one and the only API for now
 
