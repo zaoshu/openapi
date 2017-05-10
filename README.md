@@ -13,6 +13,5 @@ _WARNING: THIS IS A WORKING DRAFT._
     * [Pagination](v2/overview.md#pagination)
     * [Rate Limiting](v2/overview.md#rate-limiting)
     * [User Agent Required](v2/overview.md#user-agent-required)
-* [User](v2/user.md)
 * [Instance](v2/instance.md)
-* [Task](v2/task.md)
+* [User](v2/user.md)

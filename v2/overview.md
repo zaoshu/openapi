@@ -41,11 +41,11 @@ Many API methods take optional parameters. For GET requests, any parameters not 
 
     curl -i "https://openapi.zaoshu.io/instance/d872c7bbfca643a0834d7d2241f69e2b?status=running"
 
-In this example, the value 'd872c7bbfca643a0834d7d2241f69e2b' are provided for the `:instance_id` parameter in the path while `:status` is passed in the query string.
+In this example, the value 'd872c7bbfca643a0834d7d2241f69e2b' are provided for the `:id` parameter in the path while `:status` is passed in the query string.
 
 For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of 'application/json':
 
-    curl -i -u username -d '{"scopes":["public_repo"]}' https://openapi.zaoshu.io/authorizations
+    curl -i -u username -d '{"result_notify_uri":["https://your-webhook.com"]}' https://openapi.zaoshu.io/instance/d872c7bbfca643a0834d7d2241f69e2b/run
 
 ## Root Endpoint
 
@@ -54,7 +54,7 @@ You can issue a `GET` request to the root endpoint to get all the endpoint categ
     curl https://openapi.zaoshu.io
 
 ## Client Errors
-
+<!--
 There are three possible types of client errors on API calls that receive request bodies:
 
 1.  Sending invalid JSON will result in a `400 Bad Request` response.
@@ -86,73 +86,26 @@ There are three possible types of client errors on API calls that receive reques
 
 All error objects have resource and field properties so that your client can tell what the problem is. There's also an error code to let you know what is wrong with the field. These are the possible validation error codes:
 
-<table>
-<thead>
-<tr>
-<th>Error Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>`missing`</td>
-<td>Resource does not exist.</td>
-</tr>
-<tr>
-<td>`missing_field`</td>
-<td>Required field on a resource has not been set.</td>
-</tr>
-<tr>
-<td>`invalid`</td>
-<td>Formatting of a field is invalid. The documentation for that resource should be able to give you more specific information.</td>
-</tr>
-<tr>
-<td>`already_exists`</td>
-<td>This means another resource has the same value as this field. This can happen in resources that must have some unique key (such as Label names).</td>
-</tr>
-</tbody>
-</table>
+| Error Name | Description |
+| --- | --- |
+| `missing` | Resource does not exist. |
+| `missing_field` | Required field on a resource has not been set. |
+| `invalid` | Formatting of a field is invalid. The documentation for that resource should be able to give you more specific information. |
+| `already_exists` | This means another resource has the same value as this field. This can happen in resources that must have some unique key (such as Label names). |
 
-Resources may also send custom validation errors (where `code` is `custom`). Custom errors will always have a `message` field describing the error, and most errors will also include a `documentation_url` field pointing to some content that might help you resolve the error.
+Resources may also send custom validation errors (where `code` is `custom`). Custom errors will always have a `message` field describing the error, and most errors will also include a `documentation_url` field pointing to some content that might help you resolve the error.-->
 
 ## HTTP Verbs
 
 Where possible, API v2 strives to use appropriate HTTP verbs for each action.
-
-<table>
-<thead>
-<tr>
-<th>Verb</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>`HEAD`</td>
-<td>Can be issued against any resource to get just the HTTP header info.</td>
-</tr>
-<tr>
-<td>`GET`</td>
-<td>Used for retrieving resources.</td>
-</tr>
-<tr>
-<td>`POST`</td>
-<td>Used for creating resources.</td>
-</tr>
-<tr>
-<td>`PATCH`</td>
-<td>Used for updating resources with partial JSON data. For instance, an Issue resource has `title` and `body` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept `POST` requests.</td>
-</tr>
-<tr>
-<td>`PUT`</td>
-<td>Used for replacing resources or collections. For `PUT` requests with no `body` attribute, be sure to set the `Content-Length` header to zero.</td>
-</tr>
-<tr>
-<td>`DELETE`</td>
-<td>Used for deleting resources.</td>
-</tr>
-</tbody>
-</table>
+| Verb | Description |
+| --- | --- |
+| `HEAD` | Can be issued against any resource to get just the HTTP header info. |
+| `GET` | Used for retrieving resources. |
+| `POST` | Used for creating resources. |
+| `PATCH` | Used for updating resources with partial JSON data. For instance, an Issue resource has `title` and `body` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept `POST` requests. |
+| `PUT` | Used for replacing resources or collections. For `PUT` requests with no `body` attribute, be sure to set the `Content-Length` header to zero. |
+| `DELETE` | Used for deleting resources. |>
 
 ## Authentication
 
@@ -162,7 +115,7 @@ There are two ways to authenticate through zaoshu API v2. Requests that require 
 
 	curl -u "key:secret" https://openapi.zaoshu.io
 
-## OAuth2 Token (sent in a header)
+## OAuth2 Token (sent in a header) _*(COMING SOON)*_
 
 	curl -H "Authorization: token OAUTH-TOKEN" https://openapi.zaoshu.io
 
@@ -211,28 +164,11 @@ X-RateLimit-Reset: 137270087
 
 The headers tell you everything you need to know about your current rate limit status:
 
-<table>
-<thead>
-<tr>
-<th>Header Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>`X-RateLimit-Limit`</td>
-<td>The maximum number of requests that the consumer is permitted to make per hour.</td>
-</tr>
-<tr>
-<td>`X-RateLimit-Remaining`</td>
-<td>The number of requests remaining in the current rate limit window.</td>
-</tr>
-<tr>
-<td>`X-RateLimit-Reset`</td>
-<td>The time at which the current rate limit window resets in [UTC epoch seconds](http://en.wikipedia.org/wiki/Unix_time).</td>
-</tr>
-</tbody>
-</table>
+| Header Name | Description |
+| --- | --- |
+| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per hour. |
+| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |
+| `X-RateLimit-Reset` | The time at which the current rate limit window resets in [UTC epoch seconds](http://en.wikipedia.org/wiki/Unix_time). |
 
 Once you go over the rate limit you will receive an error response:
 
@@ -267,13 +203,13 @@ If your application triggers this rate limit, you'll receive an informative resp
 	}
 
 
-## User Agent Required
+<!--## User Agent Required
 
-All API requests MUST include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We request that you use your zaoshu username, or the name of your application, for the `User-Agent` header value. This allows us to contact you if there are problems.
+All API requests MUST include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. We request that you use your zaoshu username, for the `User-Agent` header value. This allows us to contact you if there are problems.
 
 Here's an example:
 
-    User-Agent: Awesome-Octocat-App
+    User-Agent: 
 
 
 If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden` response:
@@ -284,4 +220,4 @@ If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden
 	Content-Type: text/html
 
 	Request forbidden by administrative rules.
-	Please make sure your request has a User-Agent header.
+	Please make sure your request has a User-Agent header.-->
