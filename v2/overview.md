@@ -54,6 +54,7 @@ You can issue a `GET` request to the root endpoint to get all the endpoint categ
     curl https://openapi.zaoshu.io
 
 ## Client Errors
+
 <!--
 There are three possible types of client errors on API calls that receive request bodies:
 
@@ -98,6 +99,7 @@ Resources may also send custom validation errors (where `code` is `custom`). Cus
 ## HTTP Verbs
 
 Where possible, API v2 strives to use appropriate HTTP verbs for each action.
+
 | Verb | Description |
 | --- | --- |
 | `HEAD` | Can be issued against any resource to get just the HTTP header info. |
@@ -105,7 +107,7 @@ Where possible, API v2 strives to use appropriate HTTP verbs for each action.
 | `POST` | Used for creating resources. |
 | `PATCH` | Used for updating resources with partial JSON data. For instance, an Issue resource has `title` and `body` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept `POST` requests. |
 | `PUT` | Used for replacing resources or collections. For `PUT` requests with no `body` attribute, be sure to set the `Content-Length` header to zero. |
-| `DELETE` | Used for deleting resources. |>
+| `DELETE` | Used for deleting resources. |
 
 ## Authentication
 
