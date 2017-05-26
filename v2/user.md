@@ -13,24 +13,18 @@ Get info of user account.
 
     Status: 200 OK
 
-    {
+```json
+{
+code: 0,
+data: {
+  "email": "***@email.com",
+  "status" "normal"
+},
+msg: ""
+}
+```
 
-    }
 
-
-## Get Profile Detail 
-
-Get detail of user profile.
-
-    GET /user/profile
-
-### Response
-
-    Status: 200 OK
-
-    {
-
-    }
 
 ## Get Wallet Info
 
@@ -41,6 +35,14 @@ Get info of user wallet, including the balance zcoins.
 
     Status: 200 OK
 
-    {
-
-    }
+```json
+{
+code :0,
+data: {
+  "balance": 1000,
+  "freeConsumed": 1000,
+  "freeTotal": 1000,
+},
+"msg": ""
+}
+```
