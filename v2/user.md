@@ -16,8 +16,8 @@ Get info of user account.
 {
   "code": 0,
   "data": {
-  	"email": "***@email.com",
-  	"status" "normal"
+    "email": "***@email.com",
+    "status": "normal/unactived"
   },
   "msg": ""
 }
@@ -36,11 +36,11 @@ Get info of user wallet, including the balance zcoins.
 
 ```
 {
-  "code" :0,
+  "code": 0,
   "data": {
     "balance": 1000,
     "freeConsumed": 1000,
-  	"freeTotal": 1000,
+    "freeTotal": 1000,
   },
   "msg": ""
 }
