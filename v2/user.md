@@ -13,14 +13,14 @@ Get info of user account.
 
     Status: 200 OK
 
-```json
+```
 {
-code: 0,
-data: {
-  "email": "***@email.com",
-  "status" "normal"
-},
-msg: ""
+	code: 0,
+	data: {
+  		"email": "***@email.com",
+  		"status" "normal"
+	},
+	msg: ""
 }
 ```
 
@@ -35,14 +35,14 @@ Get info of user wallet, including the balance zcoins.
 
     Status: 200 OK
 
-```json
+```
 {
-code :0,
-data: {
-  "balance": 1000,
-  "freeConsumed": 1000,
-  "freeTotal": 1000,
-},
-"msg": ""
+	code :0,
+	data: {
+  		"balance": 1000,
+  		"freeConsumed": 1000,
+  		"freeTotal": 1000,
+	},
+	"msg": ""
 }
 ```
