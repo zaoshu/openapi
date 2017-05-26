@@ -1,7 +1,6 @@
 # User
 
 * [Get Account Info](#get-account-info)
-* [Get Profile Detail](#get-profile-detail)
 * [Get Wallet Info](#get-wallet-info)
 
 ## Get Account Info
@@ -15,12 +14,12 @@ Get info of user account.
 
 ```
 {
-	code: 0,
-	data: {
-  		"email": "***@email.com",
-  		"status" "normal"
-	},
-	msg: ""
+  "code": 0,
+  "data": {
+  	"email": "***@email.com",
+  	"status" "normal"
+  },
+  "msg": ""
 }
 ```
 
@@ -37,12 +36,12 @@ Get info of user wallet, including the balance zcoins.
 
 ```
 {
-	code :0,
-	data: {
-  		"balance": 1000,
-  		"freeConsumed": 1000,
-  		"freeTotal": 1000,
-	},
-	"msg": ""
+  "code" :0,
+  "data": {
+    "balance": 1000,
+    "freeConsumed": 1000,
+  	"freeTotal": 1000,
+  },
+  "msg": ""
 }
 ```
