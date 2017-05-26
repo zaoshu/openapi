@@ -1,7 +1,6 @@
 # User
 
 * [Get Account Info](#get-account-info)
-* [Get Profile Detail](#get-profile-detail)
 * [Get Wallet Info](#get-wallet-info)
 
 ## Get Account Info
@@ -13,24 +12,18 @@ Get info of user account.
 
     Status: 200 OK
 
-    {
+```
+{
+  "code": 0,
+  "data": {
+    "email": "***@email.com",
+    "status": "normal/unactived"
+  },
+  "msg": ""
+}
+```
 
-    }
 
-
-## Get Profile Detail 
-
-Get detail of user profile.
-
-    GET /user/profile
-
-### Response
-
-    Status: 200 OK
-
-    {
-
-    }
 
 ## Get Wallet Info
 
@@ -41,6 +34,14 @@ Get info of user wallet, including the balance zcoins.
 
     Status: 200 OK
 
-    {
-
-    }
+```
+{
+  "code": 0,
+  "data": {
+    "balance": 1000,
+    "freeConsumed": 1000,
+    "freeTotal": 1000,
+  },
+  "msg": ""
+}
+```
