@@ -22,7 +22,7 @@ StringToSign =
 #### Sort query string
 To construct the sorted query string, complete the following steps:
 
-1. Sort the parameter names by alphabetical order.
+1. Sort the parameter names by character code point in ascending order. For example, a parameter name that begins with the uppercase letter F precedes a parameter name that begins with a lowercase letter b.
 
 2. For each parameter, append the parameter name, followed by the equals sign character (=), followed by the parameter value. Use an empty string for parameters that have no value.
 
@@ -32,7 +32,7 @@ To construct the sorted query string, complete the following steps:
 The following example shows how to construct the string to sign.
 
 ```
-GET /test?a=1&b=2 HTTP/1.1
+GET /test?a=1&b=2&Q= HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
 Date: Wed, 18Mar 2016 08:04:06 GMT
@@ -41,7 +41,7 @@ Date: Wed, 18Mar 2016 08:04:06 GMT
 1. HTTP_METHOD is `"GET"`
 2. Content-Type is `"application/json; charset=utf-8"`
 3. Date is `"Wed, 18Mar 2016 08:04:06 GMT"`
-4. SortedQueryString is `"a=1\nb=2"`
+4. SortedQueryString is `"Q=\na=1\nb=2"`
 5. Body is empty string
 
 String to sign is:
@@ -49,7 +49,7 @@ String to sign is:
 "GET" + "\n" +
 "application/json; charset=utf-8" + "\n" +
 "Wed, 18Mar 2016 08:04:06 GMT" + "\n" +
-"a=1\nb=2" + "\n" +
+"Q=\na=1\nb=2" + "\n" +
 ""
 ```
 
@@ -58,6 +58,7 @@ And python example code is:
 query = {
     "a": "1",
     "b": "2",
+    "Q": "",
 }
 
 values = [
@@ -73,7 +74,7 @@ values.append("")
 # string to sing
 "\n".join(values)
 
-# result is "GET\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\na=1\nb=2\n
+# result is "GET\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n
 "
 ```
 
