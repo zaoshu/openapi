@@ -25,20 +25,16 @@ List instances created by authenticated user.
 
     {
       "code": 0,
-      "data": {
-        "instances": [
-          {
-            "id": "instance id",
-            "title": "instance title",
-            "status": "idle/error/running",
-            "createdAt": 1492593196000,
-            "statistics": {
-              "totalExecution": 0,
-              "totalFetchingRows": 0
-            }
-          }
-        ]
-      },
+      "data": [
+        {
+          "id": "instance id",
+          "title": "instance title",
+          "status": "idle/error/running",
+          "createdAt": 1492593196000,
+          "totalExecution": 1,
+          "totalFetchingRows": 1
+        }
+      ],
       "msg": ""
     }
 
@@ -55,16 +51,12 @@ Get detail of single instance.
     {
       "code": 0,
       "data": {
-        "instance": {
-          "id": "instance id",
-          "title": "instance title",
-          "status": "idle/error/running",
-          "createdAt": 1494844957000,
-          "statistics": {
-            "totalExecution": 0,
-            "totalFetchingRows": 0
-          }
-        }
+        "id": "instance id",
+        "title": "instance title",
+        "status": "idle/error/running",
+        "createdAt": 1494844957000,
+        "totalExecution": 1,
+        "totalFetchingRows": 1
       },
       "msg": ""
     }
@@ -88,7 +80,7 @@ Edit meta-data and configuration of instance.
 
     {
       "code": 0,
-      "data": nil,
+      "data": null,
       "msg": ""
     }
 
@@ -123,7 +115,7 @@ Default URL rule you set in [Dashboard](https://dashboard.zaoshu.io) will be use
 
     {
       "code": 0,
-      "data": nil,
+      "data": null,
       "msg": ""
     }
 
@@ -139,15 +131,13 @@ List all tasks of specific instance.
 
     {
       "code": 0,
-      "data": {
-        "tasks": [
-          {
-            "id": "task id",
-            "status": "done/error",
-            "createdAt": 1494810771000,
-          }
-        ]
-      },
+      "data": [
+        {
+          "id": "task id",
+          "status": "done/error",
+          "createdAt": 1494810771000
+        }
+      ],
       "msg": ""
     }
 
@@ -164,13 +154,11 @@ Get detial of single task.
     {
       "code": 0,
       "data": {
-        "task": {
-          "id": "task id",
-          "status": "done/error",
-          "createdAt": 1494810771000,
-          "startTime": 1494810771000,
-          "endTime": 1494810790000,
-          "totalUrlCount": 1
-        }
-      }
+        "id": "task id",
+        "status": "done/error",
+        "createdAt": 1494810771000,
+        "totalUrlCount": 1,
+        "failedUrlCount": 0
+      },
+      "msg": ""
     }
