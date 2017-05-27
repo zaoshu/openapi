@@ -74,8 +74,7 @@ values.append("")
 # string to sing
 "\n".join(values)
 
-# result is "GET\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n
-"
+# result is "GET\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n"
 ```
 
 ## Calculate the Signature
