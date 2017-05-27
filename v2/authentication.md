@@ -67,7 +67,10 @@ values = [
     "Wed, 18Mar 2016 08:04:06 GMT",
 ]
 # sorted query string
-values.extend("%s=%s" % (k, query[k]) for k in sorted(query.keys()))
+if len(query) > 0:
+    values.extend("%s=%s" % (k, query[k]) for k in sorted(query.keys()))
+else:
+    values.append("")
 # empty body
 values.append("")
 
