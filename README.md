@@ -1,9 +1,6 @@
 # ZAOSHU OpenAPI V2: Spiderface 
 
-_WARNING: THIS IS A WORKING DRAFT._ 
-
 * [Overview](v2/overview.md)
-    * [Version](v2/overview.md#version)
     * [Schema](v2/overview.md#schema)
     * [Parameters](v2/overview.md#parameters)
     * [Root Endpoint](v2/overview.md#root-endpoint)
@@ -14,4 +11,12 @@ _WARNING: THIS IS A WORKING DRAFT._
     * [Rate Limiting](v2/overview.md#rate-limiting)
     * [User Agent Required](v2/overview.md#user-agent-required)
 * [Instance](v2/instance.md)
+    * [List your instances](v2/instance.md#list-your-instances)
+    * [Get Instance Detail](v2/instance.md#get-instance-detail)
+    * [Edit Instance](v2/instance.md#edit-instance)
+    * [Run Instance](v2/instance.md#run-instance)
+    * [List the Tasks of Instance](v2/instance.md#list-the-tasks-of-instance)
+    * [Get Task Detail](v2/instance.md#get-task-detail)
 * [User](v2/user.md)
+    * [Get Account Info](v2/user.md#get-account-info)
+    * [Get Wallet Info](v2/user.md#get-wallet-info)
