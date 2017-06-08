@@ -35,12 +35,12 @@ The following example shows how to construct the string to sign.
 GET /test?a=1&b=2&Q= HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
-Date: Wed, 18Mar 2016 08:04:06 GMT
+Date: Wed, 18 Mar 2016 08:04:06 GMT
 ```
 
 1. HTTP_METHOD is `"GET"`
 2. Content-Type is `"application/json; charset=utf-8"`
-3. Date is `"Wed, 18Mar 2016 08:04:06 GMT"`
+3. Date is `"Wed, 18 Mar 2016 08:04:06 GMT"`
 4. SortedQueryString is `"Q=\na=1\nb=2"`
 5. Body is empty string
 
@@ -48,7 +48,7 @@ String to sign is:
 ```
 "GET" + "\n" +
 "application/json; charset=utf-8" + "\n" +
-"Wed, 18Mar 2016 08:04:06 GMT" + "\n" +
+"Wed, 18 Mar 2016 08:04:06 GMT" + "\n" +
 "Q=\na=1\nb=2" + "\n" +
 ""
 ```
@@ -64,7 +64,7 @@ query = {
 values = [
     "GET",
     "application/json; charset=utf-8",
-    "Wed, 18Mar 2016 08:04:06 GMT",
+    "Wed, 18 Mar 2016 08:04:06 GMT",
 ]
 # sorted query string
 if len(query) > 0:
@@ -77,7 +77,7 @@ values.append("")
 # string to sing
 "\n".join(values)
 
-# result is "GET\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n"
+# result is "GET\napplication/json; charset=utf-8\nWed, 18 Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n"
 ```
 
 ## Calculate the Signature
@@ -102,7 +102,7 @@ Request:
 POST /test?a=1&b=2 HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
-Date: Wed, 18Mar 2016 08:04:06 GMT
+Date: Wed, 18 Mar 2016 08:04:06 GMT
 
 {"v": "tt"}
 ```
@@ -119,13 +119,13 @@ API Secret:
 
 String to sign:
 ```
-POST\napplication/json; charset=utf-8\nWed, 18Mar 2016 08:04:06 GMT\na=1\nb=2\n{"v": "tt"}
+POST\napplication/json; charset=utf-8\nWed, 18 Mar 2016 08:04:06 GMT\na=1\nb=2\n{"v": "tt"}
 
 ```
 
 Signature:
 ```
-m8BwRn/B4X3nzZcu1qa5AHWdtK65TIlL8U3fxJvWLcI=
+Y4Xd2pS1rjXURfGMKM7oOht/1cbSC8F1m9X0NrTu/aI=
 ```
 
 Result request:
@@ -133,8 +133,8 @@ Result request:
 POST /test?a=1&b=2 HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
-Date: Wed, 18Mar 2016 08:04:06 GMT
-Authorization: ZAOSHU qwertyuiop:m8BwRn/B4X3nzZcu1qa5AHWdtK65TIlL8U3fxJvWLcI=
+Date: Wed, 18 Mar 2016 08:04:06 GMT
+Authorization: ZAOSHU qwertyuiop:Y4Xd2pS1rjXURfGMKM7oOht/1cbSC8F1m9X0NrTu/aI=
 
 {"v": "tt"}
 ```
