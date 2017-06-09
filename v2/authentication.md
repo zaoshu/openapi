@@ -169,7 +169,7 @@ function KeyValue(key, value) {
 
 KeyValue.prototype = {
   toString: function() {
-    return encodeURIComponent(this.key) + '=' + encodeURIComponent(this.value);
+    return this.key + '=' + this.value;
   }
 };
 
