@@ -125,7 +125,7 @@ POST\napplication/json; charset=utf-8\nWed, 18 Mar 2016 08:04:06 GMT\na=1\nb=2\n
 
 Signature:
 ```
-Y4Xd2pS1rjXURfGMKM7oOht/1cbSC8F1m9X0NrTu/aI=
+EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 ```
 
 Result request:
@@ -134,7 +134,7 @@ POST /test?a=1&b=2 HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
 Date: Wed, 18 Mar 2016 08:04:06 GMT
-Authorization: ZAOSHU qwertyuiop:Y4Xd2pS1rjXURfGMKM7oOht/1cbSC8F1m9X0NrTu/aI=
+Authorization: ZAOSHU qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 
 {"v": "tt"}
 ```
