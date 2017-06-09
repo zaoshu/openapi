@@ -138,3 +138,73 @@ Authorization: ZAOSHU qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 
 {"v": "tt"}
 ```
+
+## Example Code
+
+#### JS code for postman
+
+```js
+function getQueryParams(url){
+    var qparams = {},
+        parts = (url||'').split('?'),
+        qparts, qpart,
+        i=0;
+
+    if(parts.length <= 1){
+        return qparams;
+    }else{
+        qparts = parts[1].split('&');
+        for(i in qparts){
+            qpart = qparts[i].split('=');
+            qparams[qpart[0]] = qpart[1] || '';
+        }
+    }
+    return qparams;
+}
+
+function KeyValue(key, value) {
+  this.key = key;
+  this.value = value;
+}
+
+KeyValue.prototype = {
+  toString: function() {
+    return encodeURIComponent(this.key) + '=' + encodeURIComponent(this.value);
+  }
+};
+
+function getSortedQueryString(url) {
+    var values = getQueryParams(url);
+
+    var query = [];
+    for (var key in values) {
+        if (values.hasOwnProperty(key)) {
+            query.push(new KeyValue(key, values[key]));
+        }
+    }
+
+    query.sort(function(a, b){ return a.key < b.key ? -1 : 1 });
+    return query.join('\n');
+}
+
+var date = (new Date()).toUTCString();
+var values = [
+    request.method,
+    request.headers['Content-Type'],
+    date,
+    getSortedQueryString(request.url),
+];
+
+if (typeof request.data === 'string') {
+    values.push(request.data || '');
+}
+
+var base_string = values.join('\n');
+console.log(base_string);
+
+var signature = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(base_string, environment['api-secret']));
+console.log(signature);
+
+postman.setEnvironmentVariable('date', date);
+postman.setEnvironmentVariable('signature', signature);
+```
