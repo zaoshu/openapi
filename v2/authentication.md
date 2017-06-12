@@ -197,6 +197,8 @@ var values = [
 
 if (typeof request.data === 'string') {
     values.push(request.data || '');
+} else {
+    values.push('');
 }
 
 var base_string = values.join('\n');
