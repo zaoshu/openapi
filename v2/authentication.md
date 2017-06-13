@@ -141,6 +141,50 @@ Authorization: ZAOSHU qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 
 ## Example Code
 
+#### Python 3
+
+```python
+import hmac
+import hashlib
+import base64
+
+def sign(secret, method, content_type, date, query=None, body=None):
+    values = [
+        method,
+        content_type,
+        date,
+    ]
+    if query:
+        values.extend("%s=%s" % (k, query[k]) for k in sorted(query.keys()))
+    else:
+        values.append("")
+
+    if body:
+        values.append(body)
+    else:
+        values.append("")
+    base_string = "\n".join(values)
+    print(base_string)
+
+    digest = hmac.new(secret.encode("utf8"), base_string.encode("utf8"), hashlib.sha256).digest()
+    return base64.b64encode(digest).decode("utf8")
+
+if __name__ == '__main__':
+    query = {
+        'a': '1',
+        'b': '2',
+    }
+    body = '{"v": "tt"}'
+    s = sign(
+        '1234567890-=',
+        'POST',
+        'application/json; charset=utf-8',
+        'Wed, 18 Mar 2016 08:04:06 GMT',
+        query, body
+    )
+    print(s)
+```
+
 #### JS code for postman
 
 ```js
