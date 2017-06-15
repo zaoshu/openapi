@@ -1,20 +1,22 @@
-# Overview
+# 概述 
 
 This describes the resources that make up the official zaoshu API v2.
+该文档包含了 OpenAPI V2 的基本概念和所需资源的描述。
 
-* [Schema](#schema)
-* [Parameters](#parameters)
-* [Root Endpoint](#root-endpoint)
-* [Client Errors](#client-errors)
-* [HTTP Verbs](#http-verbs)
-* [Authentication](#authentication)
-* [Pagination](#pagination)
-* [Rate Limiting](#rate-limiting)
-* [User Agent Required](#user-agent-required)
 
-## Schema
+* [纲要](#schema)
+* [参数传递](#parameters)
+* [访问根节点](#root-endpoint)
+* [客户端错误码](#client-errors)
+* [HTTP 动词语义](#http-verbs)
+* [授权验证](#authentication)
+* [分页](#pagination)
+* [请求频率限制](#rate-limiting)
+<!--* [User Agent Required](#user-agent-required)-->
 
-All API access is over HTTPS, and accessed from the `https://openapi.zaoshu.io/v2`. All data is sent and received as JSON.
+## 纲要
+
+所有的 API 都将通过 HTTPS 从 `https://openapi.zaoshu.io/v2` 请求。往返数据内容均为 JSON 格式。
 
     curl -i https://openapi.zaoshu.io/v2
 
@@ -28,25 +30,25 @@ All API access is over HTTPS, and accessed from the `https://openapi.zaoshu.io/v
     Content-Length: 5
     Cache-Control: max-age=0, private, must-revalidate
 
-## Parameters
+## 参数传递
 
-Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
+很多的 API 接口接受可选参数的传递。对于 GET 请求，所有未在请求路径中以分段指定的参数，都可以通过 HTTP 请求字符串传递：
 
     curl -i "https://openapi.zaoshu.io/v2/instance/d872c7bbfca643a0834d7d2241f69e2b?status=running"
 
-In this example, the value 'd872c7bbfca643a0834d7d2241f69e2b' are provided for the `:id` parameter in the path while `:status` is passed in the query string.
+在该示例中，请求路径中的值 'd872c7bbfca643a0834d7d2241f69e2b' 将作为参数 `:id` 的传入，而 `:status` 则通过请求字符串传递。
 
-For POST, PATCH, PUT, and DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of 'application/json':
+对于 POST、PATCH、PUT 和 DELETE 请求，在 URL 请求字符串中未被包括的部分将会被编码后以 JSON 的方式传递：
 
     curl -i -u username -d '{"result_notify_uri":["https://your-webhook.com"]}' https://openapi.zaoshu.io/v2/instance/d872c7bbfca643a0834d7d2241f69e2b/run
 
-## Root Endpoint
+## 访问根节点 
 
-You can issue a `GET` request to the root endpoint to get all the endpoint categories that the API supports:
+通过 `GET` 请求根节点能够得到所有的 API 接口项：
 
     curl https://openapi.zaoshu.io/v2
 
-## Client Errors
+## 客户端错误码 
 
 <!--
 There are three possible types of client errors on API calls that receive request bodies:
@@ -89,24 +91,28 @@ All error objects have resource and field properties so that your client can tel
 
 Resources may also send custom validation errors (where `code` is `custom`). Custom errors will always have a `message` field describing the error, and most errors will also include a `documentation_url` field pointing to some content that might help you resolve the error.-->
 
-## HTTP Verbs
+## HTTP 动词语义
 
 Where possible, API v2 strives to use appropriate HTTP verbs for each action.
+API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 
-| Verb | Description |
+| 动词 | 描述 |
 | --- | --- |
-| `HEAD` | Can be issued against any resource to get just the HTTP header info. |
-| `GET` | Used for retrieving resources. |
-| `POST` | Used for creating resources. |
-| `PATCH` | Used for updating resources with partial JSON data. For instance, an Issue resource has `title` and `body` attributes. A PATCH request may accept one or more of the attributes to update the resource. PATCH is a relatively new and uncommon HTTP verb, so resource endpoints also accept `POST` requests. |
-| `PUT` | Used for replacing resources or collections. For `PUT` requests with no `body` attribute, be sure to set the `Content-Length` header to zero. |
-| `DELETE` | Used for deleting resources. |
+<!--| `HEAD` | Can be issued against any resource to get just the HTTP header info. |-->
+| `GET` | 用于资源索取 |
+| `POST` | 用于资源创建 |
+| `PATCH` | Used for updating resources with partial JSON data. For instance, an Instance resource has `title` and `result_notify_uriy` attributes. A PATCH request may accept one or more of the attributes to update the resource. 用于通过提供部分数据的 JSON 对资源进行更新。例如，爬虫实例有 `title` 和 `result_notify_uri` 两个属性。`PATCH` 请求可以接受一个或多个属性的参数传入来更新对应的资源。|
+| `PUT` | Used for replacing resources or collections. 用于替换掉对应的资源。|
+| `DELETE` | Used for deleting resources.用于（软）删除对应的资源 |
 
-## Authentication
+## 授权校验 
 
 You can get API key and secret from [Dashboard](https://dashboard.zaoshu.io/?settings).
+你可以在[控制面板->设置](https://dashboard.zaoshu.io/?settings)中获取 API 授权的 key 与 secret。
+
 
 See [Authentication](authentication.md).
+详情请查看[授权校验文档](authentication.md)。
 
 ## Failed login limit
 
@@ -129,19 +135,17 @@ After detecting several requests with invalid credentials within a short period,
 	}
 
 
-## Pagination
+## 分页
 
-Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the `?page` parameter. For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter. Note that for technical reasons not all endpoints respect the `?per_page` parameter.
+返回多个项目的请求将会做分页处理，默认每页 30 个项目，你可以通过指定 `?page` 参数来获取更多的分页内容。部分 API 中你可以通过指定 `?per_page` 参数来增加单页的项目数量，最大值为 100。需要特别说明的是，由于实现原因，部分接口不支持 `?per_page` 参数。
 
     curl 'https://openapi.zaoshu.io/v2/instances?page=2&per_page=100'
 
-Note that page numbering is 1-based and that omitting the `?page` parameter will return the first page.
+注意，分页数从 1 开始计算，没有 `?page` 参数时默认返回第一页内容。
 
-## Rate Limiting
+## 频率限制
 
-For requests using Basic Authentication or OAuth, you can make up to 5,000 requests per hour. For unauthenticated requests, the rate limit allows you to make up to 60 requests per hour. Unauthenticated requests are associated with your IP address, and not the user making requests.
-
-You can check the returned HTTP headers of any API request to see your current rate limit status:
+对于授权成功的请求，你每小时最多可以发起 5000 次。你可以通过任意的 API 请求的返回头部获取到当前的频率限制详情： 
 
 curl -i https://openapi.zaoshu.io/v2/users/whatever
 HTTP/1.1 200 OK
@@ -151,15 +155,16 @@ X-RateLimit-Limit: 6000
 X-RateLimit-Remaining: 4500
 X-RateLimit-Reset: 137270087
 
-The headers tell you everything you need to know about your current rate limit status:
+返回头中的以下字段包含了关于频率限制的所有信息：
 
-| Header Name | Description |
+| 头名称 | 描述 |
 | --- | --- |
-| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per hour. |
-| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |
-| `X-RateLimit-Reset` | The time at which the current rate limit window resets in [UTC epoch seconds](http://en.wikipedia.org/wiki/Unix_time). |
+| `X-RateLimit-Limit` | 使用者每小时被允许的最大请求量 |
+| `X-RateLimit-Remaining` | 当前的频率限制窗口时间内剩余可用的请求量 |
+| `X-RateLimit-Reset` | 当前频率限制窗口重设的剩余时间，格式为[UNIX 时间](http://en.wikipedia.org/wiki/Unix_time) |
 
 Once you go over the rate limit you will receive an error response:
+一旦使用超过频率限制，你回收到错误返回：
 
 	HTTP/1.1 403 Forbidden
 	Date: Tue, 20 Aug 2017 14:50:41 GMT
@@ -169,13 +174,14 @@ Once you go over the rate limit you will receive an error response:
 	X-RateLimit-Reset: 1377013266
 
 	{
-        "message": "API rate limit exceeded for xxx.xxx.xxx.xxx."
+                "message": "API rate limit exceeded for xxx.xxx.xxx.xxx."
 	}
 
 
-You can also [check your rate limit status](/v2/rate_limit) without incurring an API hit.
+<!--You can also [check your rate limit status](/v2/rate_limit) without incurring an API hit.-->
 
-## Abuse Rate Limits
+
+<!--## Abuse Rate Limits
 
 To protect the quality of service from zaoshu, additional rate limits may apply to some actions. For example, rapidly creating content, polling aggressively instead of using webhooks, making API calls with a high concurrency, or repeatedly requesting data that is computationally expensive may result in abuse rate limiting.
 
@@ -189,7 +195,7 @@ If your application triggers this rate limit, you'll receive an informative resp
 
 	{
         "message": "You have triggered an abuse detection mechanism and have been temporarily blocked from content creation. Please retry your request again later."
-	}
+	}-->
 
 
 <!--## User Agent Required
