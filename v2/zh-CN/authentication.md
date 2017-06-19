@@ -1,13 +1,10 @@
-# 授权验证 
+# 授权验证
 
-When you send HTTP requests to zaoshu, you sign the requests and add to HTTP `Authorization` header so that zaoshu can identify who sent them. You sign requests with your API key and secret, which can be found from [Dashboard](https://dashboard.zaoshu.io/?settings).
+所有发送到造数 OpenAPI 的请求都需要签名，并设置请求头的`Authorization`。签名需要的`key`和`secret`可以从[这里](https://dashboard.zaoshu.io/?settings)获取。
 
+## 获取需要签名的数据
 
-To sign a request, you use body of the request with some other values from the request and your API secret to create a signed hash, this is the signature.
-
-## Create the string to sign
-
-To create the string to sign, concatenate the method, content type, date, sorted query string and body of the request, as shown in the following pseudocode:
+伪代码如下:
 
 ```
 StringToSign =
@@ -18,19 +15,21 @@ StringToSign =
     Body
 ```
 
-> Set it to empty string if there is no `SortedQueryString` or `Body`
+> 如果没有查询参数就设置为空字符串
 
-#### Sort query string
-To construct the sorted query string, complete the following steps:
+> 如果没有`Body`就设置为空字符串
 
-1. Sort the parameter names by character code point in ascending order. For example, a parameter name that begins with the uppercase letter F precedes a parameter name that begins with a lowercase letter b.
+#### SortedQueryString
+步骤如下:
 
-2. For each parameter, append the parameter name, followed by the equals sign character (=), followed by the parameter value. Use an empty string for parameters that have no value.
+1. 按照码位（code point）升序排列参数名称。例如名字以F开头的参数要排在以b开头的参数前面。
 
-3. Append the newline character (\n) after each parameter value, except for the last value in the list.
+2. 对于每个参数都要按照`name=value`的格式拼接起来，对于没有值的参数应该设置为空字符串。
 
-#### Example request
-The following example shows how to construct the string to sign.
+3. 除了最后一个参数其他的都要加上换行符（\n）。
+
+#### 请求示例
+下面的例子展示了如何构造一个签名字符串：
 
 ```
 GET /test?a=1&b=2&Q= HTTP/1.1
@@ -54,7 +53,7 @@ String to sign is:
 ""
 ```
 
-And python example code is:
+对应的`Python`代码是:
 ```python
 query = {
     "a": "1",
@@ -81,22 +80,18 @@ values.append("")
 # result is "GET\napplication/json; charset=utf-8\nWed, 18 Mar 2016 08:04:06 GMT\nQ=\na=1\nb=2\n"
 ```
 
-## Calculate the Signature
-The following pseudocode shows how to calculate the signature.
+## 计算签名
 ```
 signature = base64(hmac-sha256(api secret, string to sign))
 ```
 
-## Add Signature to the Authorization Header
+## 添加签名到`Authorization`
 
-You can include signature by adding it to an HTTP header named `Authorization`. Although the header is named Authorization, the signing information is actually used for authentication.
-
-The following pseudocode shows the construction of the Authorization header.
 ```
 Authorization: zaoshu api-key:signature
 ```
 
-## Example
+## 示例
 
 Request:
 ```
@@ -140,7 +135,7 @@ Authorization: zaoshu qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 {"v": "tt"}
 ```
 
-## Example Code
+## 示例代码
 
 #### Python 3
 
