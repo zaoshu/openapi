@@ -98,7 +98,6 @@ API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 
 | 动词 | 描述 |
 | --- | --- |
-<!--| `HEAD` | Can be issued against any resource to get just the HTTP header info. |-->
 | `GET` | 用于资源索取 |
 | `POST` | 用于资源创建 |
 | `PATCH` | Used for updating resources with partial JSON data. For instance, an Instance resource has `title` and `result_notify_uriy` attributes. A PATCH request may accept one or more of the attributes to update the resource. 用于通过提供部分数据的 JSON 对资源进行更新。例如，爬虫实例有 `title` 和 `result_notify_uri` 两个属性。`PATCH` 请求可以接受一个或多个属性的参数传入来更新对应的资源。|
