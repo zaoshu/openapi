@@ -12,7 +12,6 @@ This describes the resources that make up the official zaoshu API v2.
 * [授权验证](#authentication)
 * [分页](#pagination)
 * [请求频率限制](#rate-limiting)
-<!--* [User Agent Required](#user-agent-required)-->
 
 ## 纲要
 
@@ -146,13 +145,13 @@ After detecting several requests with invalid credentials within a short period,
 
 对于授权成功的请求，你每小时最多可以发起 5000 次。你可以通过任意的 API 请求的返回头部获取到当前的频率限制详情： 
 
-curl -i https://openapi.zaoshu.io/v2/users/whatever
-HTTP/1.1 200 OK
-Date: Mon, 01 Jul 2017 17:27:06 GMT
-Status: 200 OK
-X-RateLimit-Limit: 6000
-X-RateLimit-Remaining: 4500
-X-RateLimit-Reset: 137270087
+    curl -i https://openapi.zaoshu.io/v2/users/whatever
+    HTTP/1.1 200 OK
+    Date: Mon, 01 Jul 2017 17:27:06 GMT
+    Status: 200 OK
+    X-RateLimit-Limit: 6000
+    X-RateLimit-Remaining: 4500
+    X-RateLimit-Reset: 137270087
 
 返回头中的以下字段包含了关于频率限制的所有信息：
 
