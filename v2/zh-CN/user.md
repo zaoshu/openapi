@@ -5,7 +5,6 @@
 
 ## 帐号信息 
 
-Get info of user account.
 获取用户帐号信息。
 
     GET /user/account
@@ -27,7 +26,6 @@ Get info of user account.
 
 ## 钱包信息 
 
-Get info of user wallet, including the balance zcoins.
 获取用户钱包信息，包括帐号剩余造数点信息。
 
     GET /user/wallet
