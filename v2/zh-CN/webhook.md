@@ -8,18 +8,33 @@ Webhook允许你在zaoshu.io上订阅某些实例，当触发事件时，我们�
 ```
 POST /payload HTTP/1.1
 Host: localhost:12138
-User-Agent: zaoshu-Hookshot
+user-agent: zaoshu-hookshot
 Content-Type: application/json
 Content-Length: 6877
-X-zaoshu-Event: default
+x-zaoshu-event: default                           //通知事件，目前有且只有一个
 
 {
-  "taskId": "de9d0c7496c247e2ba27f34cafeb052c",
-  "title": "抓数据去造数！！！",
-  "UUID" : "aaaaf632-0d4b-42bc-b71f-669ee0d6f9aa",
-  "createdAt" : 690177600,
+  "taskId": "de9d0c7496c247e2ba27f34cafeb052c",                //任务ID
+  "title": "抓数据去造数！！！",                                 //实例标题
+  "appInstanceId" : "aaaaf632-0d4b-42bc-b71f-669ee0d6f9aa",    //实例ID
+  "createdAt" : 690177600,                                     //创建该实例时间戳
 }
 
 ```
+
+
+##如何使用WebHook
+
+配置webhook的页面在造数官网，我的爬虫页面最下面了开发者功能里面设置(如果没有找到开发者功能，请在个人设置中打开开发者功能)
+
+成功设置WebHook的开发者，实例完成时，造数会发送JSON数据格式，并且造数只会发送一次消息给WebHook(目前WebHook没有做消息可靠性到达，如果目标服务返回的http code 不为200即表示发送失败)。
+
+
+##注意事项
+
+1、在配置webhook的URL，造数并不会发送HTTP探针去验证服务的有效性，这里需要开发者，谨慎保管好自己的WebHook。   
+2、目前造数仅支持任务执行完成后给WebHook发送数据，```x-zaoshu-event: default``` 默认仅仅发送任务已完成数据   
+3、造数目前没有针对每个WebHook 设置secret，所以开发者需要保护好自己的WebHook不让别人知道，在可预见的将来，将会完善此功能。
+
 
   
