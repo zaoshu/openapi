@@ -11,7 +11,7 @@
     * [Authentication](v2/en-US/overview.md#authentication)
     * [Pagination](v2/en-US/overview.md#pagination)
     * [Rate Limiting](v2/en-US/overview.md#rate-limiting)
-    * [User Agent Required](v2/en-US/overview.md#user-agent-required)
+    <!--* [User Agent Required](v2/en-US/overview.md#user-agent-required)-->
 * [Instance](v2/en-US/instance.md)
     * [List your instances](v2/en-US/instance.md#list-your-instances)
     * [Get Instance Detail](v2/en-US/instance.md#get-instance-detail)
