@@ -22,14 +22,14 @@ StringToSign =
 #### SortedQueryString
 步骤如下:
 
-1. 按照码位（code point）升序排列参数名称。例如名字以F开头的参数要排在以b开头的参数前面。
+1. 按照码位（code point）升序排列参数名称。例如名字以F开头的参数要排在以b开头的参数前面。
 
-2. 对于每个参数都要按照`name=value`的格式拼接起来，对于没有值的参数应该设置为空字符串。
+2. 对于每个参数都要按照`name=value`的格式拼接起来，对于没有值的参数应该设置为空字符串。
 
 3. 除了最后一个参数其他的都要加上换行符（\n）。
 
 #### 请求示例
-下面的例子展示了如何构造一个签名字符串：
+下面的例子展示了如何构造一个签名字符串：
 
 ```
 GET /test?a=1&b=2&Q= HTTP/1.1
@@ -88,7 +88,7 @@ signature = base64(hmac-sha256(api secret, string to sign))
 ## 添加签名到`Authorization`
 
 ```
-Authorization: zaoshu api-key:signature
+Authorization: ZAOSHU api-key:signature
 ```
 
 ## 示例
@@ -130,7 +130,7 @@ POST /test?a=1&b=2 HTTP/1.1
 Host: openapi.zaoshu.io
 Content-Type: application/json; charset=utf-8
 Date: Wed, 18 Mar 2016 08:04:06 GMT
-Authorization: zaoshu qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
+Authorization: ZAOSHU qwertyuiop:EZlFQV45vYb+vGEqmBs2N0u2kWkOWzZujIF28wAXi0I=
 
 {"v": "tt"}
 ```
