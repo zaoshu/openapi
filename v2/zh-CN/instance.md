@@ -172,10 +172,11 @@
     GET /download/instance/:appInstanceID/:taskID 
 
 ### 参数
+	contentType可选值: csv|xls|json|xml
   
 |名称|类型|必要参数|描述|默认值|
 | ------------- | -------- | ------ | ------------- | ------------------------- |
-| `contentType` | `string` | `true` | `目标 文件类型` | ```可选值: csv|xls|json|xml``` |
+| `contentType` | `string` | `true` | `目标 文件类型` |  |
 
 举例:
 	
