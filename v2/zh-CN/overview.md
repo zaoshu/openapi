@@ -1,6 +1,5 @@
 # 概述 
 
-This describes the resources that make up the official zaoshu API v2.
 该文档包含了 OpenAPI V2 的基本概念和所需资源的描述。
 
 
