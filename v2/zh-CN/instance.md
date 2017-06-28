@@ -6,6 +6,7 @@
 * [执行实例](#run-instance)
 * [实例任务列表](#list-the-tasks-of-instance)
 * [实例任务详情](#get-task-detail)
+* [实例数据下载](#instance-download)
 
 ## 实例列表 
 
@@ -162,3 +163,40 @@
       },
       "msg": ""
     }
+
+
+## 实例数据下载
+
+下载单个实例的数据文件
+
+    GET /download/instance/:appInstanceID/:taskID 
+
+### 参数
+	contentType可选值: csv|xls|json|xml
+  
+|名称|类型|必要参数|描述|默认值|
+| ------------- | -------- | ------ | ------------- | ------------------------- |
+| `contentType` | `string` | `true` | `目标 文件类型` |  |
+
+举例:
+	
+    curl http://localhost/v2/download/instance/d3c903c9e11d4f45bec82a6640f06c59/1e229da9e5454b66a713bddba7b3e012?contentType=json
+
+### 返回
+
+  Status: 200 OK   
+  Content-Type →application/octet-stream  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
