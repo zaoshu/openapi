@@ -86,7 +86,6 @@
 
 ## Run Instance 
 
-Run instance with optional configurations.
 执行实例，支持可选配置。
 
     POST /instance/:instance_id
@@ -108,7 +107,6 @@ Run instance with optional configurations.
 | `method`  | `string` | `false`  | HTTP 方法 | `GET` |
 | `headers` | `object` | `false`  | HTTP 请求头键值对 | `null` |
 
-Default URL rule you set in [Dashboard](https://dashboard.zaoshu.io) will be used when field `urls` found omitted.
 参数 `urls` 为空时，默认将会使用您在[控制面板->我的爬虫](https://dashboard.zaoshu.io)中设置的网址规则。
 
 ### 返回

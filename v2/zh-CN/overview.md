@@ -92,46 +92,21 @@ Resources may also send custom validation errors (where `code` is `custom`). Cus
 
 ## HTTP 动词语义
 
-Where possible, API v2 strives to use appropriate HTTP verbs for each action.
 API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 
 | 动词 | 描述 |
 | --- | --- |
 | `GET` | 用于资源索取 |
 | `POST` | 用于资源创建 |
-| `PATCH` | Used for updating resources with partial JSON data. For instance, an Instance resource has `title` and `result_notify_uriy` attributes. A PATCH request may accept one or more of the attributes to update the resource. 用于通过提供部分数据的 JSON 对资源进行更新。例如，爬虫实例有 `title` 和 `result_notify_uri` 两个属性。`PATCH` 请求可以接受一个或多个属性的参数传入来更新对应的资源。|
-| `PUT` | Used for replacing resources or collections. 用于替换掉对应的资源。|
-| `DELETE` | Used for deleting resources.用于（软）删除对应的资源 |
+| `PATCH` | 用于通过提供部分数据的 JSON 对资源进行更新。例如，爬虫实例有 `title` 和 `result_notify_uri` 两个属性。`PATCH` 请求可以接受一个或多个属性的参数传入来更新对应的资源。|
+| `PUT` | 用于替换掉对应的资源。|
+| `DELETE` | 用于（软）删除对应的资源 |
 
 ## 授权校验 
 
-You can get API key and secret from [Dashboard](https://dashboard.zaoshu.io/?settings).
 你可以在[控制面板->设置](https://dashboard.zaoshu.io/?settings)中获取 API 授权的 key 与 secret。
 
-
-See [Authentication](authentication.md).
 详情请查看[授权校验文档](authentication.md)。
-
-## Failed login limit
-
-Authenticating with invalid credentials will return `401 Unauthorized`:
-
-	curl -i https://openapi.zaoshu.io/v2 -u foo:bar
-	HTTP/1.1 401 Unauthorized
-
-	{
-        "message": "Bad credentials"
-	}
-
-After detecting several requests with invalid credentials within a short period, the API will temporarily reject all authentication attempts for that user (including ones with valid credentials) with `403 Forbidden`:
-
-	curl -i https://openapi.zaoshu.io/v2 -u valid_key:valid_secret
-	HTTP/1.1 403 Forbidden
-
-	{
-        "message": "Maximum number of login attempts exceeded. Please try again later."
-	}
-
 
 ## 分页
 
@@ -161,7 +136,6 @@ After detecting several requests with invalid credentials within a short period,
 | `X-RateLimit-Remaining` | 当前的频率限制窗口时间内剩余可用的请求量 |
 | `X-RateLimit-Reset` | 当前频率限制窗口重设的剩余时间，格式为[UNIX 时间](http://en.wikipedia.org/wiki/Unix_time) |
 
-Once you go over the rate limit you will receive an error response:
 一旦使用超过频率限制，你回收到错误返回：
 
 	HTTP/1.1 403 Forbidden
