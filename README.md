@@ -9,7 +9,7 @@
     * [参数传递](v2/zh-CN/overview.md#参数传递)
     * [访问根节点](v2/zh-CN/overview.md#访问根节点)
     * [客户端错误码](v2/zh-CN/overview.md#客户端错误码)
-    * [HTTP 动词语义](v2/zh-CN/overview.md#HTTP-动词语义)
+    * [HTTP 动词语义](v2/zh-CN/overview.md#http-动词语义)
     * [授权验证](v2/zh-CN/overview.md#授权验证)
     * [分页](v2/zh-CN/overview.md#分页)
     * [请求频率限制](v2/zh-CN/overview.md#请求频率限制)

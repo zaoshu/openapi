@@ -6,6 +6,7 @@
 * [执行实例](#run-instance)
 * [实例任务列表](#list-the-tasks-of-instance)
 * [实例任务详情](#get-task-detail)
+* [实例数据下载](#instance-download)
 
 ## 实例列表 
 
