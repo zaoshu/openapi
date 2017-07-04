@@ -119,11 +119,11 @@ API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 
 对于授权成功的请求，你每小时最多可以发起 5000 次。你可以通过任意的 API 请求的返回头部获取到当前的频率限制详情： 
 
-    curl -i https://openapi.zaoshu.io/v2/users/whatever
+    curl -i https://openapi.zaoshu.io/v2/user/
     HTTP/1.1 200 OK
     Date: Mon, 01 Jul 2017 17:27:06 GMT
     Status: 200 OK
-    X-RateLimit-Limit: 6000
+    X-RateLimit-Limit: 5000
     X-RateLimit-Remaining: 4500
     X-RateLimit-Reset: 137270087
 
@@ -135,7 +135,7 @@ API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 | `X-RateLimit-Remaining` | 当前的频率限制窗口时间内剩余可用的请求量 |
 | `X-RateLimit-Reset` | 当前频率限制窗口重设的剩余时间，格式为[UNIX 时间](http://en.wikipedia.org/wiki/Unix_time) |
 
-一旦使用超过频率限制，你回收到错误返回：
+一旦使用超过频率限制，你会收到错误返回：
 
 	HTTP/1.1 403 Forbidden
 	Date: Tue, 20 Aug 2017 14:50:41 GMT
@@ -145,9 +145,8 @@ API v2 会尽可能为请求动作分配合适的 HTTP 动词。
 	X-RateLimit-Reset: 1377013266
 
 	{
-                "message": "API rate limit exceeded for xxx.xxx.xxx.xxx."
+                "msg": "API rate limit exceeded for xxx.xxx.xxx.xxx."
 	}
-
 
 <!--You can also [check your rate limit status](/v2/rate_limit) without incurring an API hit.-->
 
