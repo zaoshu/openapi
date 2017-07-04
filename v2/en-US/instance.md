@@ -1,13 +1,13 @@
 # Instances
 
-* [List your instances](#list-your-instances)
+* [List Your Instances](#list-your-instances)
 * [Get Instance Detail](#get-instance-detail)
 * [Edit Instance](#edit-instance)
 * [Run Instance](#run-instance)
 * [List the Tasks of Instance](#list-the-tasks-of-instance)
 * [Get Task Detail](#get-task-detail)
 
-## List your instances
+## List Your Instances
 
 List instances created by authenticated user.
 
@@ -59,6 +59,41 @@ Get detail of single instance.
         "totalFetchingRows": 1
       },
       "msg": ""
+    }
+
+
+## Get the Schema of Instance
+
+Get the latest schema of instance.
+
+    GET /instance/:instance_id/schema
+
+### Response 
+
+    Status: 200 OK
+
+    {
+        "code": 0,
+        "data": {
+            "schemas": [
+                {
+                    "title": "name",
+                    "id": "C339",
+                    "type": "string"
+                },
+                {
+                    "title": "class",
+                    "id": "C337",
+                    "type": "string"
+                },
+                {
+                    "title": "ID",
+                    "id": "C341",
+                    "type": "string"
+                },
+            ]
+        },
+        "msg": ""
     }
 
 ## Edit Instance
