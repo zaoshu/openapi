@@ -143,13 +143,13 @@ For requests using Basic Authentication or OAuth, you can make up to 5,000 reque
 
 You can check the returned HTTP headers of any API request to see your current rate limit status:
 
-curl -i https://openapi.zaoshu.io/v2/users/whatever
-HTTP/1.1 200 OK
-Date: Mon, 01 Jul 2017 17:27:06 GMT
-Status: 200 OK
-X-RateLimit-Limit: 6000
-X-RateLimit-Remaining: 4500
-X-RateLimit-Reset: 137270087
+        curl -i https://openapi.zaoshu.io/v2/users/whatever
+        HTTP/1.1 200 OK
+        Date: Mon, 01 Jul 2017 17:27:06 GMT
+        Status: 200 OK
+        X-RateLimit-Limit: 6000
+        X-RateLimit-Remaining: 4500
+        X-RateLimit-Reset: 137270087
 
 The headers tell you everything you need to know about your current rate limit status:
 
