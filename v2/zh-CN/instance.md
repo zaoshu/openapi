@@ -215,7 +215,7 @@
 
 举例:
 	
-    curl http://openapi.zaoshu.io/v2/instance/d3c903c9e11d4f45bec82a6640f06c59/1e229da9e5454b66a713bddba7b3e012?contentType=json
+    curl http://openapi.zaoshu.io/v2/instance/d3c903c9e11d4f45bec82a6640f06c59/task/1e229da9e5454b66a713bddba7b3e012/result/file?contentType=json
 
 ### 返回
 
