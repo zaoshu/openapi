@@ -230,7 +230,7 @@ function getSortedQueryString(url) {
 var date = (new Date()).toUTCString();
 var values = [
     request.method,
-    request.headers['Content-Type'],
+    request.headers['content-type'],
     date,
     getSortedQueryString(request.url),
 ];
